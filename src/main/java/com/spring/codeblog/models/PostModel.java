@@ -1,6 +1,8 @@
 package com.spring.codeblog.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
@@ -13,27 +15,30 @@ public class PostModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false)
+
+    @NotBlank
     private String title;
 
-    @Column(nullable = false)
+
+    @NotBlank
     private String author;
 
-    @Column(nullable = false)
-    private LocalDate date;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @NotBlank
+    private LocalDate datePost;
+
+    @NotBlank
     private String textPost;
 
     public PostModel(){
 
     }
 
-    public PostModel(UUID id, String title, String author, LocalDate date, String textPost) {
+    public PostModel(UUID id, String title, String author, LocalDate datePost, String textPost) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.date = date;
+        this.datePost = datePost;
         this.textPost = textPost;
     }
 
@@ -61,12 +66,12 @@ public class PostModel {
         this.author = author;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDatePost() {
+        return datePost;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDatePost(LocalDate datePost) {
+        this.datePost = datePost;
     }
 
     public String getTextPost() {
@@ -82,12 +87,12 @@ public class PostModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PostModel postModel = (PostModel) o;
-        return Objects.equals(id, postModel.id) && Objects.equals(title, postModel.title) && Objects.equals(author, postModel.author) && Objects.equals(date, postModel.date) && Objects.equals(textPost, postModel.textPost);
+        return Objects.equals(id, postModel.id) && Objects.equals(title, postModel.title) && Objects.equals(author, postModel.author) && Objects.equals(datePost, postModel.datePost) && Objects.equals(textPost, postModel.textPost);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author, date, textPost);
+        return Objects.hash(id, title, author, datePost, textPost);
     }
 
     @Override
@@ -96,7 +101,7 @@ public class PostModel {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", date=" + date +
+                ", datePost=" + datePost +
                 ", textPost='" + textPost + '\'' +
                 '}';
     }
