@@ -42,6 +42,10 @@ public class CodeblogController {
         ModelAndView mv = new ModelAndView("postDetails");
         Optional<PostModel> posts = codeblogService.findById(id);
         mv.addObject("post", posts);
+        mv.addObject("title",posts.get().getTitle());
+        mv.addObject("author", posts.get().getAuthor());
+        mv.addObject("datePost", posts.get().getDatePost());
+        mv.addObject("textPost", posts.get().getTextPost());
         return mv;
     }
     @RequestMapping(value = "/newpost", method = RequestMethod.GET)

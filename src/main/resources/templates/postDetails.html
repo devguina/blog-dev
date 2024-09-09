@@ -30,19 +30,19 @@
         </nav>
 
       <article>
-          <h1 class="card-title" style="font-weight: bold; margin-bottom: 20px;"><span th:text="${post.title}"></span></h1>
+          <h1 class="card-title" style="font-weight: bold; margin-bottom: 20px;"><span th:text="${title}"></span></h1>
 
           <p class="card-subtitle mb-2 text-muted">
               <i class="material-icons">person_outline</i>
-              <span th:text="${post.author}"></span>
+              <span th:text="${author}"></span>
               <br>
               <i class="material-icons">date_range</i>
-              <span th:text="${post.datePost}"></span>
+              <span th:text="${datePost}"></span>
 
           </p>
 
           <section>
-              <p class="card-text" style="margin-top: 40px;"><span th:utext="${post.textPost}"></span></p>
+              <p class="card-text" style="margin-top: 40px;"><span th:utext="${textPost}"></span></p>
           </section>
 
       </article>
