@@ -29,7 +29,7 @@
                      <span th:text=" ${posts.datePost}"></span>
                  </p>
 
-                 <a href="#"><h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"><span th:text=" ${posts.title}"></span></h4></a>
+                 <a th:href="${(#mvc.url('CC#getPostDetails').arg(0, post.id)).build()}"><h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"><span th:text=" ${posts.title}"></span></h4></a>
 
                  <p class="card-text"> <span th:utext=" ${#strings.abbreviate(posts.textPost, 400)} "></span></p>
                 </div>
