@@ -12,9 +12,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -40,5 +43,18 @@ public class CodeblogController {
         Optional<PostModel> posts = codeblogService.findById(id);
         mv.addObject("post", posts);
         return mv;
+    }
+    @RequestMapping(value = "/newpost", method = RequestMethod.GET)
+    public String getPostForm(){
+        return "postForm";
+    }
+    @RequestMapping(value = "/newpost", method = RequestMethod.POST)
+    public String savePost(@Valid PostModel postModel, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            return "redirect:/newpost";
+        }
+        postModel.setDatePost(LocalDate.now());
+        codeblogService.save(postModel);
+        return "redirect:/posts";
     }
 }

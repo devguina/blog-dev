@@ -1,5 +1,6 @@
 package com.spring.codeblog.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -24,10 +25,11 @@ public class PostModel {
     private String author;
 
 
-    @NotBlank
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate datePost;
 
     @NotBlank
+    @Lob
     private String textPost;
 
     public PostModel(){
